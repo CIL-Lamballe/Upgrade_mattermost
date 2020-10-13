@@ -2,7 +2,7 @@
 
 # Immediately exit if a command run from a loop, a pipeline or a compound
 # command statement fails
-set -e
+set -xe
 
 ################################################################################
 # Configuration - please adapt it to your environment
@@ -147,18 +147,26 @@ USER="$(stat -c '%U' ${mattermostdir}/bin/mattermost)"
 GROUP="$(stat -c '%G' ${mattermostdir}/bin/mattermost)"
 chown -hR "$USER":"$GROUP" "${downloaddir}/mattermost-upgrade/"
 
+
 # Clean up mattermost directory
-find "${mattermostdir}" -mindepth 1 -maxdepth 1 -not \( -path "${mattermostdir}/config" -o -path "${mattermostdir}/logs" -o -path "${mattermostdir}/plugins" -o -path "${mattermostdir}/data" \) -exec rm -rf {} \;
+find "${mattermostdir}" -mindepth 1 -maxdepth 1 -not \( -path "${mattermostdir}/config" -o -path "${mattermostdir}/logs" -o -path "${mattermostdir}/plugins" -o -path "${mattermostdir}/data" -o -path "${mattermostdir}/client" \) -exec rm -rf {} \;
+find "${mattermostdir}/client" -mindepth 1 -maxdepth 1 -not \( -path "${mattermostdir}/client/plugins" \) -exec rm -rf {} \;
+
 
 # Rename plugin directory
 if [ "${plugins}" -eq 0 ];  then
-	echo "[+] Renaming plugin folder..."
-	mv "${mattermostdir}/plugins/" "${mattermostdir}/plugins~"
-	mv "${mattermostdir}/client/plugins/" "${mattermostdir}/client/plugins~"
+	echo "[+] Renaming plugin folders..."
+	if [ -d ${mattermostdir}/plugins/ ]; then
+		mv "${mattermostdir}/plugins/" "${mattermostdir}/plugins~"
+	fi
+	if [ -d ${mattermostdir}/client/plugins/ ]; then
+		mv "${mattermostdir}/client/plugins/" "${mattermostdir}/client/plugins~"
+	fi
 fi
 
 echo "[+] Updating Mattermost..."
-cp -an "${downloaddir}/mattermost-upgrade/*" ${mattermostdir}
+cp -an ${downloaddir}/mattermost-upgrade/mattermost/* ${mattermostdir}
+
 
 echo "[+] Cleaning Mattermost temporary files..."
 rm -rf "${downloaddir}/mattermost-upgrade/"
