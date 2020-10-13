@@ -1,6 +1,6 @@
 This script is heavily based on the https://github.com/mattermost/docs/edit/master/source/administration/upgrade\_mattermost.sh provided by the Mattermost community. Thanks to them !
 
-- [x] Working on Ubuntu 20.04
+- [ ] Working on Ubuntu 20.04, CentOS... + CI
 
 - [ ] Perfect deployment
 
