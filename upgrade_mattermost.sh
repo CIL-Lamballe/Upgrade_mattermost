@@ -102,6 +102,8 @@ function get_the_file() {
 			exit 1
 		fi
 	fi
+
+	echo "[+] The Mattermost update package has been downloaded with successful"
 }
 
 # Check previous download
@@ -114,19 +116,10 @@ if [ -e ${downloaddir}/mattermost-upgrade.tar.gz ]; then
 			rm -rf ${downloaddir}/mattermost-upgrade.tar.gz
 			get_the_file
 			;;
-	#	*)
-	#		;;
 	esac
 else
 	get_the_file
 fi
-
-# DEBUG EXIT
-exit 1
-
-
-
-echo "[+] The Mattermost update package has been downloaded with successful"
 
 echo "[+] Extracting Mattermost update package..."
 mkdir -p "${downloaddir}/mattermost-upgrade"
