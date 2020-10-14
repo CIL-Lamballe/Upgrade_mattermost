@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Immediately exit if a command run from a loop, a pipeline or a compound
-# command statement fails or a variable is used unset.
-set -o errexit nounset
+# command statement fails.
+set -e
 
 
 ################################################################################
@@ -53,7 +53,7 @@ if [[ "${edition}" != "Team" ]] && [[ "${edition}" != "Enterprise" ]]; then
 fi
 
 # Check config variables
-test -d ${backup}
+test -d ${backupdir}
 test -d ${downloaddir}
 test -d ${mattermostdir}
 
