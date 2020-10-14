@@ -1,12 +1,12 @@
 This script is heavily based on the https://github.com/mattermost/docs/edit/master/source/administration/upgrade\_mattermost.sh provided by the Mattermost community. Thanks to them !
 
-- [ ] Working on Ubuntu 20.04, CentOS... + CI
+- [ ] CI
 
-- [ ] Perfect deployment
+- [ ] Perfect deployment: archive old config, keep all files (images, etc).
 
 - [ ] Already untar check
 
-- [ ] Already download check
+- [x] Already download check
 
 - [ ] Test script prior to executing
 

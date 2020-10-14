@@ -2,7 +2,7 @@
 
 # Immediately exit if a command run from a loop, a pipeline or a compound
 # command statement fails
-set -xe
+set -e
 
 ################################################################################
 # Configuration - please adapt it to your environment
@@ -30,7 +30,6 @@ backupdatabase=0
 ################################################################################
 
 # Check dependencies
-
 if ((EUID != 0)); then
 	echo "[-] This script needs to be run as root to work properly. Aborted."
 	exit 1
@@ -191,4 +190,3 @@ if [ "${plugins}" -eq 0 ];  then
 	echo "mv \"${mattermostdir}/client/plugins\" \"${mattermostdir}/client/plugins~\""
 	echo "*************************************************"
 fi
-
