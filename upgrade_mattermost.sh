@@ -148,9 +148,9 @@ echo "[+] Creating backup of Mattermost..."
 cp -ra "${mattermostdir}" "${backupdir}/mattermost-backup-$(date +'%F-%H-%M')/"
 
 echo "[+] Preparing update..."
-USER="$(stat -c '%U' ${mattermostdir}/bin/mattermost)"
-GROUP="$(stat -c '%G' ${mattermostdir}/bin/mattermost)"
-chown -hR "$USER":"$GROUP" "${downloaddir}/mattermost-upgrade/"
+#USER="$(stat -c '%U' ${mattermostdir}/bin/mattermost)"
+#GROUP="$(stat -c '%G' ${mattermostdir}/bin/mattermost)"
+#chown -hR "$USER":"$GROUP" "${downloaddir}/mattermost-upgrade/"
 
 
 # Clean up mattermost directory
